@@ -18,20 +18,25 @@ public class Duke {
         System.out.println(border + "\n  " + greeting + "\n" + border);
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
-        List<String> added = new ArrayList<>();
-        while(!input.equals("bye")){
-            if(input.equals("list")){
-                System.out.println(border);
+        List<Task> added = new ArrayList<>();
+        while(!input.equals("bye")) {
+            if (input.equals("list")) {
+                System.out.println(border + "\n  " + "The items in your list are:");
                 for (int i = 1; i <= added.size(); i++) {
                     System.out.println("  " + (i) + ". " + added.get(i - 1));
                 }
                 System.out.println(border);
-                input = sc.nextLine();
-            }else {
-                added.add(input);
+            }else if(input.contains("done")){
+                String[] words = input.split(" ");
+                Task task = added.get(Integer.parseInt(words[1])-1);
+                task.done();
+                System.out.println(border + "\n  " + "Well Done! The task has been marked as done." + "\n  " + task + "\n" + border);
+
+            }else{
+                added.add(new Task(input));
                 System.out.println(border + "\n  added: " + input + "\n" + border);
-                input = sc.nextLine();
             }
+            input = sc.nextLine();
         }
         System.out.println("Goodbye. I hope I was useful. See you again.");
         sc.close();
