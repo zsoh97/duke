@@ -3,6 +3,10 @@ public class Task {
     private boolean done;
     private String taskName;
 
+    public Task(){
+
+    }
+
     public Task(String taskName){
         this.taskName = taskName;
         this.done = false;
