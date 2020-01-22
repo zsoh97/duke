@@ -3,6 +3,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+
+    enum Tasks{
+        todo, deadline, event
+    }
+
     public static void main(String[] args){
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -47,7 +52,8 @@ public class Duke {
                         if (description.isBlank()) {
                             throw new DukeException("My apologies, description of todo is empty. :(");
                         }
-                        Todo todo = new Todo(description);
+//                      Todo todo = new Todo(description);
+                        Task todo = new Task(Tasks.todo, description);
                         tasks.add(todo);
                         System.out.println(border + "\n  " + taskAdd + todo + "\n  There are currently " + tasks.size()
                                         + " tasks in the list.\n" + border);
@@ -58,7 +64,8 @@ public class Duke {
                         if (split.length < 2) {
                             throw new DukeException("My apologies, deadline description has insufficient details :(");
                         }
-                        Deadline deadline = new Deadline(split[0], split[1]);
+//                        Deadline deadline = new Deadline(split[0], split[1]);
+                        Task deadline = new Task(Tasks.deadline, split[0], split[1]);
                         tasks.add(deadline);
                         System.out.println(border + "\n  " + taskAdd + deadline + "\n  There are currently "
                                         + tasks.size() + " tasks in the list.\n" + border);
@@ -69,7 +76,8 @@ public class Duke {
                         if (description.isBlank()) {
                             throw new DukeException("My apologies, event description has insufficient details. :(");
                         }
-                        Event event = new Event(split[0], split[1]);
+//                        Event event = new event(split[0], split[1]);
+                        Task event = new Task(Tasks.event, split[0], split[1]);
                         tasks.add(event);
                         System.out.println(border + "\n  " + taskAdd + event + "\n  There are currently " + tasks.size()
                                         + " tasks in the list.\n" + border);
