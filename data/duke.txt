@@ -1,10 +1,4 @@
 T / 1 / read book
-<<<<<<< HEAD
 D / 1 / return book / June 6th
 T / 1 / join sports club
 T / 0 /  level 7
-=======
-T / 1 / join sports club
-T / 0 /  level 7
-D /  /  level 7  / thurs
->>>>>>> level-7 commit
