@@ -37,6 +37,31 @@ public class Task {
 //    }
 //
 
+    public String write(){
+        switch (this.taskType){
+            case todo:
+                if(this.done){
+                    return "T / 1 / " + this.taskName;
+                }else{
+                    return "T / 0 / " + this.taskName;
+                }
+            case deadline:
+                if(this.done){
+                    return "D / 1 / " + this.taskName + " / " + this.byAt;
+                }else{
+                    return "D /  / " + this.taskName + " / " + this.byAt;
+                }
+            case event:
+                if(this.done){
+                    return "E / 1 / " + this.taskName + " / " + this.byAt;
+                }else{
+                    return "E / 0 / " + this.taskName + " / " + this.byAt;
+                }
+            default:
+                return"";
+        }
+    }
+
     @Override
     public String toString() {
         if (this.done) {
