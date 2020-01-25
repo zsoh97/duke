@@ -75,7 +75,15 @@ public class Duke {
                             System.out.println(border);
                             break;
                         case "done":
-                            Task task = tasks.get(sc.nextInt() - 1);
+                            description = sc.nextLine();
+                            if (description.isBlank()) {
+                                throw new DukeException("My apologies, please enter a task number :(");
+                            }
+                            int doneNum = Integer.parseInt(description.trim());
+                            if (doneNum > tasks.size()) {
+                                throw new DukeException("My apologies, task number not found :(");
+                            }
+                            Task task = tasks.get(doneNum - 1);
                             task.done();
                             System.out.println(border + "\n  " + "Well Done! The task has been marked as done." + "\n  "
                                     + task + "\n" + border);
