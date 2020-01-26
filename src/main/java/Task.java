@@ -6,7 +6,7 @@ import java.util.Locale;
 public class Task {
 
     private boolean done;
-    private String taskName;
+    private String taskName, date;
     private LocalDate lD;
     private String[] byAt;
     private Duke.Tasks taskType;
@@ -19,7 +19,11 @@ public class Task {
         this.taskName = taskName;
         this.taskType = taskType;
         this.byAt = byAt.split(" ");
-        this.lD = LocalDate.parse(this.byAt[0]);
+        if(this.byAt.length == 2) {
+            this.lD = LocalDate.parse(this.byAt[0]);
+        }else{
+            this.date = byAt;
+        }
     }
 
     public Task(Duke.Tasks taskType, String taskName){
@@ -33,10 +37,14 @@ public class Task {
     }
 
     private String date(){
-        int day = this.lD.getDayOfMonth();
-        Month month = this.lD.getMonth();
-        int year = this.lD.getYear();
-        return month.getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " " + day + " " + year;
+        if (this.date == null) {
+            int day = this.lD.getDayOfMonth();
+            Month month = this.lD.getMonth();
+            int year = this.lD.getYear();
+            return month.getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " " + day + " " + year + " " + this.byAt[1];
+        }else{
+            return this.date;
+        }
     }
 
     public void done(){
@@ -50,9 +58,9 @@ public class Task {
                 case todo:
                     return "[T][✓] " + taskName;
                 case deadline:
-                    return "[D][✓] " + taskName + " (by: " + this.date()+ " " + this.byAt[1] + ")";
+                    return "[D][✓] " + taskName + " (by: " + this.date() + ")";
                 case event:
-                    return "[E][✓] " + taskName + " (at: " + this.date() + " " + this.byAt[1] + ")";
+                    return "[E][✓] " + taskName + " (at: " + this.date() + ")";
                 default:
                     return "[✓]" + taskName;
             }
@@ -61,9 +69,9 @@ public class Task {
                 case todo:
                     return "[T][✗] " + taskName;
                 case deadline:
-                    return "[D][✗] " + taskName + " (by: " + this.date() + " " + this.byAt[1] + ")";
+                    return "[D][✗] " + taskName + " (by: " + this.date() + ")";
                 case event:
-                    return "[E][✗] " + taskName + " (at: " + this.date() + " " + this.byAt[1] + ")";
+                    return "[E][✗] " + taskName + " (at: " + this.date() + ")";
                 default:
                     return "[✗]" + taskName;
             }
