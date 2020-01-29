@@ -3,3 +3,5 @@ D / 1 / return book / June 6th
 T / 1 / join sports club
 T / 0 /  level 7
 D / 1 /  return book  / Oct 15 2019 1800
+D / 0 /  return book  / 2019-10-15
+D / 0 /  return book  / Oct 15 2019 1800
