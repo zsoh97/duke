@@ -36,6 +36,28 @@ public class Task {
         this.done = false;
     }
 
+    public String write() {
+        switch(this.taskType) {
+            case todo:
+                if (this.done) {
+                    return "T / 1 / " + this.taskName;
+                }
+                return "T / 0 / " + this.taskName;
+            case deadline:
+                if (this.done) {
+                    return "D / 1 / " + taskName + " / " + this.date();
+                }
+                return "D / 0 / " + taskName + " / " + this.date();
+            case event:
+                if (this.done) {
+                    return "E / 1 / " + taskName + " / " + this.date();
+                }
+                return "E / 0 / " + taskName + " / " + this.date();
+            default:
+                return "";
+        }
+    }
+
     private String date(){
         if (this.date == null) {
             int day = this.lD.getDayOfMonth();
