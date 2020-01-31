@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
@@ -99,6 +100,33 @@ public class Ui {
                          this.print("\n  Noted. Task " + delete + " has been removed:\n  "
                                  + removed + "\n  There are currently " + tasks.size() + " tasks in the list.\n");
                          storage.overwrite((ArrayList<Task>) tasks.getList());
+                         break;
+                     case "find":
+                         // Retrieve description from user input.
+                         description = sc.nextLine();
+
+                         // Check if description has sufficient details.
+                         if (description.isEmpty()) {
+                             throw new DukeException("My apologies, "
+                                     + "search parameter seems to be empty.\n  "
+                                     + "Please check and try again. ");
+                         }
+
+                         // Retrieve Task objects with description matching user's description.
+                         List<Task> results = storage.find(description.trim());
+
+                         //Initialise StringBuilder to store results.
+                         StringBuilder res = new StringBuilder();
+                         res.append("\n The matching Tasks in the list are: \n");
+
+                        // Iterate through results list and append Task to res.
+                         for (int i = 1; i <= results.size(); i++) {
+                             res.append("  ").append(i).append(". ").append(results.get(i - 1)).append("\n");
+                         }
+
+                         // Output results to user.
+                         this.print(res.toString());
+
                          break;
                      default:
                          throw new DukeException("My apologies, I do not recognise the command. :(");

@@ -58,6 +58,14 @@ public class Task {
         return month.getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " " + day + " " + year;
     }
 
+    /**
+     * Gets description of Task object.
+     * @return String containing task description.
+     */
+    public String getDescription(){
+        return this.taskName;
+    }
+
     public void done(){
         this.done = true;
     }
