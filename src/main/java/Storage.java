@@ -140,4 +140,20 @@ public class Storage {
         }
         return this.tasks;
     }
+
+    /**
+     * Constructs a new list to store search results.
+     * @param searchKey Identifier that Task details needs to have.
+     * @return Task objects that contain identifier.
+     */
+    protected List<Task> find(String searchKey) {
+        // Create new List<Task> to hold search results.
+        List<Task> results = new ArrayList<>();
+        for (Task t: tasks) {
+            if (t.getDescription().contains(searchKey)) {
+                results.add(t);
+            }
+        }
+        return results;
+    }
 }

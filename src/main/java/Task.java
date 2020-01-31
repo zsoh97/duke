@@ -94,6 +94,14 @@ public class Task {
         this.isDone = true;
     }
 
+    /**
+     * Gets description of Task object.
+     * @return String containing task description.
+     */
+    public String getDescription(){
+        return this.taskDetails;
+    }
+
     @Override
     public String toString() {
         if (this.isDone) {
