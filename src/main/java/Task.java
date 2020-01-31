@@ -5,7 +5,7 @@ import java.util.Locale;
 
 public class Task {
 
-    private boolean done;
+    private boolean isDone;
     private String taskName;
     private LocalDate lD;
     private String[] byAt;
@@ -26,25 +26,31 @@ public class Task {
 
     public Task(String taskName){
         this.taskName = taskName;
-        this.done = false;
+        this.isDone = false;
     }
 
     public String write() {
         switch(this.taskType) {
             case todo:
-                if (this.done) {
+                // Check if Task has been marked as done.
+                if (this.isDone) {
                     return "T / 1 / " + this.taskName;
                 }
+
                 return "T / 0 / " + this.taskName;
             case deadline:
-                if (this.done) {
+                //Check if Task has been marked as done.
+                if (this.isDone) {
                     return "D / 1 / " + taskName + " / " + this.date();
                 }
+
                 return "D / 0 / " + taskName + " / " + this.date();
             case event:
-                if (this.done) {
+                // Check if TAsk has been marked as done.
+                if (this.isDone) {
                     return "E / 1 / " + taskName + " / " + this.date();
                 }
+
                 return "E / 0 / " + taskName + " / " + this.date();
             default:
                 return "";
@@ -59,19 +65,21 @@ public class Task {
     }
 
     public void done(){
-        this.done = true;
+        this.isDone = true;
     }
 
     @Override
     public String toString() {
-        if (this.done) {
+        if (this.isDone) {
             switch (this.taskType) {
                 case todo:
                     return "[T][✓] " + taskName;
                 case deadline:
-                    return "[D][✓] " + taskName + " (by: " + this.date()+ " " + this.byAt[1] + ")";
+                    return "[D][✓] " + taskName + " (by: " + this.date()+ " " + this.byAt[1]
+                            + ")";
                 case event:
-                    return "[E][✓] " + taskName + " (at: " + this.date() + " " + this.byAt[1] + ")";
+                    return "[E][✓] " + taskName + " (at: " + this.date() + " " + this.byAt[1]
+                            + ")";
                 default:
                     return "[✓]" + taskName;
             }
@@ -80,9 +88,11 @@ public class Task {
                 case todo:
                     return "[T][✗] " + taskName;
                 case deadline:
-                    return "[D][✗] " + taskName + " (by: " + this.date() + " " + this.byAt[1] + ")";
+                    return "[D][✗] " + taskName + " (by: " + this.date() + " " + this.byAt[1]
+                            + ")";
                 case event:
-                    return "[E][✗] " + taskName + " (at: " + this.date() + " " + this.byAt[1] + ")";
+                    return "[E][✗] " + taskName + " (at: " + this.date() + " " + this.byAt[1]
+                            + ")";
                 default:
                     return "[✗]" + taskName;
             }

@@ -29,7 +29,7 @@ public class TaskList {
         return this.tasks.get(index);
     }
 
-    protected int size() {
+    protected int getSize() {
         return this.tasks.size();
     }
 
