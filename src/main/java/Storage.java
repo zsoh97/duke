@@ -1,7 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -35,7 +31,7 @@ public class Storage {
 
     protected void write(Task task){
         try{
-            PrintWriter write = new PrintWriter(new BufferedWriter(new FileWriter(filePath, false)));
+            PrintWriter write = new PrintWriter(new BufferedWriter(new FileWriter(filePath, true)));
             write.println(task.write());
         }catch (IOException e){
             e.printStackTrace();
