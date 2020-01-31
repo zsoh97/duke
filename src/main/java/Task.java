@@ -3,54 +3,78 @@ import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
+/**
+ * Task is the main object used to maintain the list of tasks from the user by Duke.
+ *
+ * This class provides multiple implementations of Task object.
+ */
 public class Task {
 
+    /**
+     * All Task objects will have the boolean attribute determining if the task has been
+     * done, the task details, and the type of Task. Task objects with deadline and event
+     * types will have additional local date attributes and additional details when
+     * applicable.
+     */
     private boolean done;
-    private String taskName;
+    private String taskDetails;
     private LocalDate lD;
-    private String[] byAt;
+    private String[] additionalDetails;
     private Duke.Tasks taskType;
 
-
-    public Task(Duke.Tasks taskType, String taskName, String byAt){
-        this.taskName = taskName;
+    /**
+     * Constructor to construct deadline and event task type Task objects.
+     * @param taskType Type of Task
+     * @param taskDetails Details of task
+     * @param additionalDetails Additional details of the task, if applicable.
+     */
+    public Task(Duke.Tasks taskType, String taskDetails, String additionalDetails){
+        this.taskDetails = taskDetails;
         this.taskType = taskType;
-        this.byAt = byAt.split(" ");
-        this.lD = LocalDate.parse(this.byAt[0]);
+        this.additionalDetails = additionalDetails.split(" ");
+        this.lD = LocalDate.parse(this.additionalDetails[0]);
     }
 
-    public Task(Duke.Tasks taskType, String taskName){
-        this.taskName = taskName;
+    /**
+     * Constructor to construct todo Task object.
+     * @param taskType Type of task
+     * @param taskDetails Details of task
+     */
+    public Task(Duke.Tasks taskType, String taskDetails){
+        this.taskDetails = taskDetails;
         this.taskType = taskType;
     }
 
-    public Task(String taskName){
-        this.taskName = taskName;
-        this.done = false;
-    }
-
+    /**
+     * Returns details of Task object formatted for storing in hard drive.
+     * @return formatted string of task object.
+     */
     public String write() {
         switch(this.taskType) {
             case todo:
                 if (this.done) {
-                    return "T / 1 / " + this.taskName;
+                    return "T / 1 / " + this.taskDetails;
                 }
-                return "T / 0 / " + this.taskName;
+                return "T / 0 / " + this.taskDetails;
             case deadline:
                 if (this.done) {
-                    return "D / 1 / " + taskName + " / " + this.date();
+                    return "D / 1 / " + taskDetails + " / " + this.date();
                 }
-                return "D / 0 / " + taskName + " / " + this.date();
+                return "D / 0 / " + taskDetails + " / " + this.date();
             case event:
                 if (this.done) {
-                    return "E / 1 / " + taskName + " / " + this.date();
+                    return "E / 1 / " + taskDetails + " / " + this.date();
                 }
-                return "E / 0 / " + taskName + " / " + this.date();
+                return "E / 0 / " + taskDetails + " / " + this.date();
             default:
                 return "";
         }
     }
 
+    /**
+     * Converts inputted date in deadline or event constructor.
+     * @return String with input string parsed as legible date.
+     */
     private String date(){
         int day = this.lD.getDayOfMonth();
         Month month = this.lD.getMonth();
@@ -58,6 +82,9 @@ public class Task {
         return month.getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " " + day + " " + year;
     }
 
+    /**
+     * Changes status of Task object to done.
+     */
     public void done(){
         this.done = true;
     }
@@ -67,24 +94,24 @@ public class Task {
         if (this.done) {
             switch (this.taskType) {
                 case todo:
-                    return "[T][✓] " + taskName;
+                    return "[T][✓] " + taskDetails;
                 case deadline:
-                    return "[D][✓] " + taskName + " (by: " + this.date()+ " " + this.byAt[1] + ")";
+                    return "[D][✓] " + taskDetails + " (by: " + this.date()+ " " + this.additionalDetails[1] + ")";
                 case event:
-                    return "[E][✓] " + taskName + " (at: " + this.date() + " " + this.byAt[1] + ")";
+                    return "[E][✓] " + taskDetails + " (at: " + this.date() + " " + this.additionalDetails[1] + ")";
                 default:
-                    return "[✓]" + taskName;
+                    return "[✓]" + taskDetails;
             }
         } else {
             switch (this.taskType) {
                 case todo:
-                    return "[T][✗] " + taskName;
+                    return "[T][✗] " + taskDetails;
                 case deadline:
-                    return "[D][✗] " + taskName + " (by: " + this.date() + " " + this.byAt[1] + ")";
+                    return "[D][✗] " + taskDetails + " (by: " + this.date() + " " + this.additionalDetails[1] + ")";
                 case event:
-                    return "[E][✗] " + taskName + " (at: " + this.date() + " " + this.byAt[1] + ")";
+                    return "[E][✗] " + taskDetails + " (at: " + this.date() + " " + this.additionalDetails[1] + ")";
                 default:
-                    return "[✗]" + taskName;
+                    return "[✗]" + taskDetails;
             }
         }
     }

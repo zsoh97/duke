@@ -1,24 +1,31 @@
-
+/**
+ * Main class for Duke.
+ * Class contains constructor for Duke object.
+ */
 public class Duke {
-    private Storage storage;
-    private TaskList tasks;
+
+    /**
+     * Duke object contains parameters that
+     */
+    protected static Storage storage;
+    protected static TaskList tasks;
     private Ui ui = new Ui();
 
     public Duke(String filePath) {
         this.ui.showWelcome();
-        this.storage = new Storage(filePath);
+        storage = new Storage(filePath);
 
         try {
-            this.tasks = new TaskList(this.storage.load());
+            tasks = new TaskList(storage.load());
         } catch (DukeException e) {
             this.ui.showLoadingError();
-            this.tasks = new TaskList();
+            tasks = new TaskList();
         }
 
     }
 
     public void run() {
-        ui.start(tasks, storage);
+        ui.start();
         }
 
     public static void main(String[] args) {
