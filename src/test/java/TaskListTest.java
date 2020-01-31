@@ -5,9 +5,9 @@ class TaskListTest {
     TaskList taskList = new TaskList();
 
     @Test
-    void size() {
+    void getSize() {
         taskList.addTask(new Task( Duke.Tasks.todo, "read book" ));
-        assertEquals(1, taskList.size());
+        assertEquals(1, taskList.getSize());
     }
 
     @Test

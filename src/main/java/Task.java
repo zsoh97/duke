@@ -16,7 +16,7 @@ public class Task {
      * types will have additional local date attributes and additional details when
      * applicable.
      */
-    private boolean done;
+    private boolean isDone;
     private String taskDetails;
     private LocalDate lD;
     private String[] additionalDetails;
@@ -52,17 +52,22 @@ public class Task {
     public String write() {
         switch(this.taskType) {
             case todo:
-                if (this.done) {
+                // Check if Task has been marked as done.
+                if (this.isDone) {
                     return "T / 1 / " + this.taskDetails;
                 }
                 return "T / 0 / " + this.taskDetails;
+
             case deadline:
-                if (this.done) {
+                //Check if Task has been marked as done.
+                if (this.isDone) {
                     return "D / 1 / " + taskDetails + " / " + this.date();
                 }
                 return "D / 0 / " + taskDetails + " / " + this.date();
+
             case event:
-                if (this.done) {
+                // Check if TAsk has been marked as done.
+                if (this.isDone) {
                     return "E / 1 / " + taskDetails + " / " + this.date();
                 }
                 return "E / 0 / " + taskDetails + " / " + this.date();
@@ -86,12 +91,12 @@ public class Task {
      * Changes status of Task object to done.
      */
     public void done(){
-        this.done = true;
+        this.isDone = true;
     }
 
     @Override
     public String toString() {
-        if (this.done) {
+        if (this.isDone) {
             switch (this.taskType) {
                 case todo:
                     return "[T][✓] " + taskDetails;

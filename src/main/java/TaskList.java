@@ -64,7 +64,7 @@ public class TaskList {
      * Checks size of list.
      * @return Returns number of Task objects in the list.
      */
-    protected int size() {
+    protected int getSize() {
         return this.tasks.size();
     }
 
