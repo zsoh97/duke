@@ -5,7 +5,8 @@
 public class Duke {
 
     /**
-     * Duke object contains parameters that
+     * Duke object contains parameters: Storage to update list of Tasks and save file in hard
+     * drive, TaskList to update list of tasks in duke and Ui for user to interact with.
      */
     protected static Storage storage;
     protected static TaskList tasks;

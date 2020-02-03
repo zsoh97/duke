@@ -50,7 +50,7 @@ public class Ui {
         // Initialise variables needed
         String input = sc.next();
         String taskAdd = "Noted. The following task has been added:\n   ";
-        String[] split;
+        String[] split, dateTime;
         String description;
 
         // Check if user is done with Duke
@@ -133,8 +133,13 @@ public class Ui {
                                 "deadline description has insufficient details :(");
                     }
 
+                    // Parse date details into LocalDate format.
+                    dateTime = split[1].split(" ");
+                    String taskBy = Parser.parseDate(dateTime[0]);
+
                     // Create new Task object of task type deadline.
-                    Task deadline = new Task(Duke.Tasks.deadline, split[0], split[1]);
+                    Task deadline = new Task(Duke.Tasks.deadline, split[0],
+                            taskBy + dateTime[1]);
 
                     // Add deadline to list.
                     Duke.tasks.addTask(deadline);
@@ -160,8 +165,13 @@ public class Ui {
                                 "event description has insufficient details. :(");
                     }
 
+                    // Parse date details into LocalDate format.
+                    dateTime = split[1].split(" ");
+                    String taskat = Parser.parseDate(dateTime[0]);
+
                     // Create new Task object of event task type.
-                    Task event = new Task(Duke.Tasks.event, split[0], split[1]);
+                    Task event = new Task(Duke.Tasks.event, split[0],
+                            taskat + dateTime[1]);
 
                     // Add event to list.
                     Duke.tasks.addTask(event);

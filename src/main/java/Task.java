@@ -1,8 +1,3 @@
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.TextStyle;
-import java.util.Locale;
-
 /**
  * Task is the main object used to maintain the list of tasks from the user by Duke.
  *
@@ -18,8 +13,7 @@ public class Task {
      */
     private boolean isDone;
     private String taskDetails;
-    private LocalDate lD;
-    private String[] additionalDetails;
+    private String additionalDetails;
     private Duke.Tasks taskType;
 
     /**
@@ -31,8 +25,8 @@ public class Task {
     public Task(Duke.Tasks taskType, String taskDetails, String additionalDetails){
         this.taskDetails = taskDetails;
         this.taskType = taskType;
-        this.additionalDetails = additionalDetails.split(" ");
-        this.lD = LocalDate.parse(this.additionalDetails[0]);
+        this.additionalDetails = additionalDetails;
+//        this.lD = LocalDate.parse(this.additionalDetails[0]);
     }
 
     /**
@@ -61,30 +55,19 @@ public class Task {
             case deadline:
                 //Check if Task has been marked as done.
                 if (this.isDone) {
-                    return "D / 1 / " + taskDetails + " / " + this.date();
+                    return "D / 1 / " + taskDetails + " / " + additionalDetails;
                 }
-                return "D / 0 / " + taskDetails + " / " + this.date();
+                return "D / 0 / " + taskDetails + " / "  + additionalDetails;
 
             case event:
                 // Check if TAsk has been marked as done.
                 if (this.isDone) {
-                    return "E / 1 / " + taskDetails + " / " + this.date();
+                    return "E / 1 / " + taskDetails + " / " + additionalDetails ;
                 }
-                return "E / 0 / " + taskDetails + " / " + this.date();
+                return "E / 0 / " + taskDetails + " / "  + additionalDetails;
             default:
                 return "";
         }
-    }
-
-    /**
-     * Converts inputted date in deadline or event constructor.
-     * @return String with input string parsed as legible date.
-     */
-    private String date(){
-        int day = this.lD.getDayOfMonth();
-        Month month = this.lD.getMonth();
-        int year = this.lD.getYear();
-        return month.getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " " + day + " " + year;
     }
 
     /**
@@ -109,9 +92,9 @@ public class Task {
                 case todo:
                     return "[T][✓] " + taskDetails;
                 case deadline:
-                    return "[D][✓] " + taskDetails + " (by: " + this.date()+ " " + this.additionalDetails[1] + ")";
+                    return "[D][✓] " + taskDetails + " (by: " + this.additionalDetails + ")";
                 case event:
-                    return "[E][✓] " + taskDetails + " (at: " + this.date() + " " + this.additionalDetails[1] + ")";
+                    return "[E][✓] " + taskDetails + " (at: "  + this.additionalDetails + ")";
                 default:
                     return "[✓]" + taskDetails;
             }
@@ -120,9 +103,9 @@ public class Task {
                 case todo:
                     return "[T][✗] " + taskDetails;
                 case deadline:
-                    return "[D][✗] " + taskDetails + " (by: " + this.date() + " " + this.additionalDetails[1] + ")";
+                    return "[D][✗] " + taskDetails + " (by: " + this.additionalDetails + ")";
                 case event:
-                    return "[E][✗] " + taskDetails + " (at: " + this.date() + " " + this.additionalDetails[1] + ")";
+                    return "[E][✗] " + taskDetails + " (at: " + this.additionalDetails + ")";
                 default:
                     return "[✗]" + taskDetails;
             }
