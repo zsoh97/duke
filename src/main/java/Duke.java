@@ -29,6 +29,12 @@ public class Duke {
         }
 
     }
+    /**
+     * Retrieves response from Duke based on user input.
+     */
+    protected String getResponse(String input) {
+        return ui.getResponse(input);
+    }
 
     public void run() {
         ui.start();
@@ -37,6 +43,13 @@ public class Duke {
     public static void main(String[] args) {
         // Creates new Duke object and initiates Duke.
         (new Duke("data/duke.txt")).run();
+    }
+
+    /**
+     * Duke constructor for Launcher.
+     */
+    public Duke(){
+        this("data/duke.txt");
     }
 
     enum Tasks {
