@@ -90,24 +90,24 @@ public class Task {
         if (this.isDone) {
             switch (this.taskType) {
                 case todo:
-                    return "[T][✓] " + taskDetails;
+                    return "[T][\u2713] " + taskDetails;
                 case deadline:
-                    return "[D][✓] " + taskDetails + " (by: " + this.additionalDetails + ")";
+                    return "[D][\u2713] " + taskDetails + " (by: " + this.additionalDetails + ")";
                 case event:
-                    return "[E][✓] " + taskDetails + " (at: "  + this.additionalDetails + ")";
+                    return "[E][\u2713] " + taskDetails + " (at: "  + this.additionalDetails + ")";
                 default:
-                    return "[✓]" + taskDetails;
+                    return "[\u2713]" + taskDetails;
             }
         } else {
             switch (this.taskType) {
                 case todo:
-                    return "[T][✗] " + taskDetails;
+                    return "[T][\u274C] " + taskDetails;
                 case deadline:
-                    return "[D][✗] " + taskDetails + " (by: " + this.additionalDetails + ")";
+                    return "[D][\u274C] " + taskDetails + " (by: " + this.additionalDetails + ")";
                 case event:
-                    return "[E][✗] " + taskDetails + " (at: " + this.additionalDetails + ")";
+                    return "[E][\u274C] " + taskDetails + " (at: " + this.additionalDetails + ")";
                 default:
-                    return "[✗]" + taskDetails;
+                    return "[\u274C]" + taskDetails;
             }
         }
     }
