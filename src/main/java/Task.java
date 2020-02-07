@@ -1,6 +1,5 @@
 /**
  * Task is the main object used to maintain the list of tasks from the user by Duke.
- *
  * This class provides multiple implementations of Task object.
  */
 public class Task {
@@ -22,11 +21,10 @@ public class Task {
      * @param taskDetails Details of task
      * @param additionalDetails Additional details of the task, if applicable.
      */
-    public Task(Duke.Tasks taskType, String taskDetails, String additionalDetails){
+    public Task(Duke.Tasks taskType, String taskDetails, String additionalDetails) {
         this.taskDetails = taskDetails;
         this.taskType = taskType;
         this.additionalDetails = additionalDetails;
-//        this.lD = LocalDate.parse(this.additionalDetails[0]);
     }
 
     /**
@@ -34,7 +32,7 @@ public class Task {
      * @param taskType Type of task
      * @param taskDetails Details of task
      */
-    public Task(Duke.Tasks taskType, String taskDetails){
+    public Task(Duke.Tasks taskType, String taskDetails) {
         this.taskDetails = taskDetails;
         this.taskType = taskType;
     }
@@ -44,36 +42,36 @@ public class Task {
      * @return formatted string of task object.
      */
     public String write() {
-        switch(this.taskType) {
-            case todo:
-                // Check if Task has been marked as done.
-                if (this.isDone) {
-                    return "T / 1 / " + this.taskDetails;
-                }
-                return "T / 0 / " + this.taskDetails;
+        switch (this.taskType) {
+        case todo:
+            // Check if Task has been marked as done.
+            if (this.isDone) {
+                return "T / 1 / " + this.taskDetails;
+            }
+            return "T / 0 / " + this.taskDetails;
 
-            case deadline:
-                //Check if Task has been marked as done.
-                if (this.isDone) {
-                    return "D / 1 / " + taskDetails + " / " + additionalDetails;
-                }
-                return "D / 0 / " + taskDetails + " / "  + additionalDetails;
+        case deadline:
+            //Check if Task has been marked as done.
+            if (this.isDone) {
+                return "D / 1 / " + taskDetails + " / " + additionalDetails;
+            }
+            return "D / 0 / " + taskDetails + " / "  + additionalDetails;
 
-            case event:
-                // Check if TAsk has been marked as done.
-                if (this.isDone) {
-                    return "E / 1 / " + taskDetails + " / " + additionalDetails ;
-                }
-                return "E / 0 / " + taskDetails + " / "  + additionalDetails;
-            default:
-                return "";
+        case event:
+            // Check if TAsk has been marked as done.
+            if (this.isDone) {
+                return "E / 1 / " + taskDetails + " / " + additionalDetails;
+            }
+            return "E / 0 / " + taskDetails + " / "  + additionalDetails;
+        default:
+            return "";
         }
     }
 
     /**
      * Changes status of Task object to done.
      */
-    public void done(){
+    public void done() {
         this.isDone = true;
     }
 
@@ -81,7 +79,7 @@ public class Task {
      * Gets description of Task object.
      * @return String containing task description.
      */
-    public String getDescription(){
+    public String getDescription() {
         return this.taskDetails;
     }
 
@@ -89,25 +87,25 @@ public class Task {
     public String toString() {
         if (this.isDone) {
             switch (this.taskType) {
-                case todo:
-                    return "[T][\u2713] " + taskDetails;
-                case deadline:
-                    return "[D][\u2713] " + taskDetails + " (by: " + this.additionalDetails + ")";
-                case event:
-                    return "[E][\u2713] " + taskDetails + " (at: "  + this.additionalDetails + ")";
-                default:
-                    return "[\u2713]" + taskDetails;
+            case todo:
+                return "[T][\u2713] " + taskDetails;
+            case deadline:
+                return "[D][\u2713] " + taskDetails + " (by: " + this.additionalDetails + ")";
+            case event:
+                return "[E][\u2713] " + taskDetails + " (at: "  + this.additionalDetails + ")";
+            default:
+                return "[\u2713]" + taskDetails;
             }
         } else {
             switch (this.taskType) {
-                case todo:
-                    return "[T][\u274C] " + taskDetails;
-                case deadline:
-                    return "[D][\u274C] " + taskDetails + " (by: " + this.additionalDetails + ")";
-                case event:
-                    return "[E][\u274C] " + taskDetails + " (at: " + this.additionalDetails + ")";
-                default:
-                    return "[\u274C]" + taskDetails;
+            case todo:
+                return "[T][\u274C] " + taskDetails;
+            case deadline:
+                return "[D][\u274C] " + taskDetails + " (by: " + this.additionalDetails + ")";
+            case event:
+                return "[E][\u274C] " + taskDetails + " (at: " + this.additionalDetails + ")";
+            default:
+                return "[\u274C]" + taskDetails;
             }
         }
     }

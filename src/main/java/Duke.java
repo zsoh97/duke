@@ -12,6 +12,10 @@ public class Duke {
     protected static TaskList tasks;
     private Ui ui = new Ui();
 
+    /**
+     * Constructs a Duke object.
+     * @param filePath file path to save file in hard drive
+     */
     public Duke(String filePath) {
         // Prints welcome message
         this.ui.showWelcome();
@@ -27,8 +31,8 @@ public class Duke {
             this.ui.showLoadingError();
             tasks = new TaskList();
         }
-
     }
+
     /**
      * Retrieves response from Duke based on user input.
      */
@@ -38,7 +42,7 @@ public class Duke {
 
     public void run() {
         ui.start();
-        }
+    }
 
     public static void main(String[] args) {
         // Creates new Duke object and initiates Duke.
@@ -48,7 +52,7 @@ public class Duke {
     /**
      * Duke constructor for Launcher.
      */
-    public Duke(){
+    public Duke() {
         this("data/duke.txt");
     }
 

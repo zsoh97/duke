@@ -45,7 +45,7 @@ public class Storage {
                 done.println(task.write());
             }
             done.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -54,13 +54,13 @@ public class Storage {
      * Appends newest Task object to save file's list of saved Task.
      * @param task Task object to be added to list.
      */
-    protected void write(Task task){
+    protected void write(Task task) {
         // Append new Task to save file.
-        try{
+        try {
             PrintWriter write = new PrintWriter(new BufferedWriter(new FileWriter(
                     filePath, true)));
             write.println(task.write());
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -68,8 +68,7 @@ public class Storage {
     /**
      * Loads list of tasks in save file into list of Task objects. Throws Duke exception.
      * @return List of Task objects.
-     * @throws DukeException Thrown when any line in the safe file does not fit the
-     * required Task object requirements.
+     * @throws DukeException Thrown when any line in the safe file does not fit the required Task object requirements.
      */
     protected List<Task> load() throws DukeException {
         // Iterates through list in safe file and populates list with Task objects.
@@ -82,57 +81,57 @@ public class Storage {
                 String[] taskDetails = identifier.split(" / ");
                 String taskType = taskDetails[0];
                 switch (taskType) {
-                    case "T":
-                        // Create new Task of todo type
-                        Task todo = new Task(Duke.Tasks.todo, taskDetails[2]);
+                case "T":
+                    // Create new Task of todo type
+                    Task todo = new Task(Duke.Tasks.todo, taskDetails[2]);
 
-                        // Check if Task has been marked as done.
-                        if (Integer.parseInt(taskDetails[1]) == 1) {
-                            todo.done();
-                        }
+                    // Check if Task has been marked as done.
+                    if (Integer.parseInt(taskDetails[1]) == 1) {
+                        todo.done();
+                    }
 
-                        // Add todo to list
-                        tasks.add(todo);
+                    // Add todo to list
+                    tasks.add(todo);
 
-                        break;
-                    case "D":
-                        // Check if details provided in safe file is sufficient to form deadline Task
-                        if (taskDetails.length < 4) {
-                            throw new DukeException("insufficient details in deadline task :(");
-                        }
+                    break;
+                case "D":
+                    // Check if details provided in safe file is sufficient to form deadline Task
+                    if (taskDetails.length < 4) {
+                        throw new DukeException("insufficient details in deadline task :(");
+                    }
 
-                        // Create new Task of deadline type
-                        Task deadline = new Task(Duke.Tasks.deadline, taskDetails[2],
-                                taskDetails[3]);
+                    // Create new Task of deadline type
+                    Task deadline = new Task(Duke.Tasks.deadline, taskDetails[2],
+                            taskDetails[3]);
 
-                        // Check if Task has been marked as done.
-                        if (Integer.parseInt(taskDetails[1]) == 1) {
-                            deadline.done();
-                        }
+                    // Check if Task has been marked as done.
+                    if (Integer.parseInt(taskDetails[1]) == 1) {
+                        deadline.done();
+                    }
 
-                        // Add deadline to list.
-                        tasks.add(deadline);
+                    // Add deadline to list.
+                    tasks.add(deadline);
 
-                        break;
-                    case "E":
-                        // Check if sufficient details are present to form Task of event type.
-                        if (taskDetails.length < 4) {
-                            throw new DukeException("insufficient details in event task :(");
-                        }
+                    break;
+                case "E":
+                    // Check if sufficient details are present to form Task of event type.
+                    if (taskDetails.length < 4) {
+                        throw new DukeException("insufficient details in event task :(");
+                    }
 
-                        // Create new Task object of event task type.
-                        Task event = new Task(Duke.Tasks.event, taskDetails[2], taskDetails[3]);
+                    // Create new Task object of event task type.
+                    Task event = new Task(Duke.Tasks.event, taskDetails[2], taskDetails[3]);
 
-                        // Check if Task has been marked as done.
-                        if (Integer.parseInt(taskDetails[1]) == 1) {
-                            event.done();
-                        }
+                    // Check if Task has been marked as done.
+                    if (Integer.parseInt(taskDetails[1]) == 1) {
+                        event.done();
+                    }
 
-                        // Add event to list.
-                        tasks.add(event);
+                    // Add event to list.
+                    tasks.add(event);
 
-                        break;
-                    default:
+                    break;
+                default:
                 }
             }
         } catch (IOException ie) {

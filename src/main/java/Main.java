@@ -19,7 +19,7 @@ public class Main extends Application {
             MainWindow mainWindow = new MainWindow();
             fxmlLoader.setRoot(mainWindow);
             AnchorPane ap = fxmlLoader.load();
-            Scene scene =new Scene(ap);
+            Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();

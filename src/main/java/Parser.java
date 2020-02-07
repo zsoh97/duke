@@ -22,7 +22,7 @@ public class Parser {
      * @param unformattedDate unformatted date input by user.
      * @return Formatted date input.
      */
-    protected static String parseDate(String unformattedDate){
+    protected static String parseDate(String unformattedDate) {
         LocalDate localDate = LocalDate.parse(unformattedDate);
         int day = localDate.getDayOfMonth();
         Month month = localDate.getMonth();

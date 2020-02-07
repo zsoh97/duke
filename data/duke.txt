@@ -2,3 +2,4 @@ T / 1 /  read
 D / 0 / return book  / 11 Dec 2019 1800
 E / 0 / meeting  / 12 Oct 2020 1900
 T / 0 / homework
+T / 0 / return
