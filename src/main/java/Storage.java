@@ -26,6 +26,7 @@ public class Storage {
      * @param filePath path to file with saved list of tasks in hard drive.
      */
     protected Storage(String filePath) {
+        assert !filePath.isEmpty() : "File path should not be empty.";
         this.filePath = filePath;
     }
 
@@ -42,7 +43,7 @@ public class Storage {
             PrintWriter done = new PrintWriter(new BufferedWriter(new FileWriter(
                     filePath, false)));
             for (Task task : tasks) {
-                done.println(task.write());
+                done.println(task.writeToFile());
             }
             done.close();
         } catch (IOException e) {
@@ -59,7 +60,7 @@ public class Storage {
         try {
             PrintWriter write = new PrintWriter(new BufferedWriter(new FileWriter(
                     filePath, true)));
-            write.println(task.write());
+            write.println(task.writeToFile());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,6 +81,7 @@ public class Storage {
             while ((identifier = br.readLine()) != null) {
                 String[] taskDetails = identifier.split(" / ");
                 String taskType = taskDetails[0];
+                assert !taskType.isEmpty() : "Task type should not be empty.";
                 switch (taskType) {
                 case "T":
                     // Create new Task of todo type

@@ -25,6 +25,7 @@ public class Task {
         this.taskDetails = taskDetails;
         this.taskType = taskType;
         this.additionalDetails = additionalDetails;
+        this.isDone = false;
     }
 
     /**
@@ -33,6 +34,7 @@ public class Task {
      * @param taskDetails Details of task
      */
     public Task(Duke.Tasks taskType, String taskDetails) {
+        this.isDone = false;
         this.taskDetails = taskDetails;
         this.taskType = taskType;
     }
@@ -41,9 +43,10 @@ public class Task {
      * Returns details of Task object formatted for storing in hard drive.
      * @return formatted string of task object.
      */
-    public String write() {
+    public String writeToFile() {
         switch (this.taskType) {
         case todo:
+            assert !this.taskDetails.isEmpty() : "Task details should not be empty.";
             // Check if Task has been marked as done.
             if (this.isDone) {
                 return "T / 1 / " + this.taskDetails;
@@ -51,6 +54,8 @@ public class Task {
             return "T / 0 / " + this.taskDetails;
 
         case deadline:
+            assert !this.taskDetails.isEmpty() : "Task details should not be empty.";
+            assert !additionalDetails.isEmpty() : "Additional details are required for deadline Tasks.";
             //Check if Task has been marked as done.
             if (this.isDone) {
                 return "D / 1 / " + taskDetails + " / " + additionalDetails;
@@ -58,7 +63,9 @@ public class Task {
             return "D / 0 / " + taskDetails + " / "  + additionalDetails;
 
         case event:
-            // Check if TAsk has been marked as done.
+            assert !this.taskDetails.isEmpty() : "Task details should not be empty.";
+            assert !additionalDetails.isEmpty() : "Additional details are required for event Tasks.";
+            // Check if Task has been marked as done.
             if (this.isDone) {
                 return "E / 1 / " + taskDetails + " / " + additionalDetails;
             }
@@ -81,6 +88,10 @@ public class Task {
      */
     public String getDescription() {
         return this.taskDetails;
+    }
+
+    protected boolean getIsDone(){
+        return this.isDone;
     }
 
     @Override

@@ -17,6 +17,8 @@ public class Duke {
      * @param filePath file path to save file in hard drive
      */
     public Duke(String filePath) {
+        assert !filePath.isEmpty(): "filepath should not be empty String.";
+
         // Prints welcome message
         this.ui.showWelcome();
         storage = new Storage(filePath);

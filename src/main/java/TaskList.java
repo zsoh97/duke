@@ -40,6 +40,8 @@ public class TaskList {
      * @param index Index of Task object to be deleted.
      */
     protected void deleteTask(int index) {
+        assert index <= tasks.size() && index > 0 : "Index of "
+                + "task should be greater than 0";
         this.tasks.remove(index);
     }
 
@@ -48,6 +50,7 @@ public class TaskList {
      * @param task Task object to be added.
      */
     protected void addTask(Task task) {
+        assert task != null: "Task should not be null.";
         this.tasks.add(task);
     }
 
@@ -57,6 +60,8 @@ public class TaskList {
      * @return Task object at index.
      */
     protected Task getTask(int index) {
+        assert index <= tasks.size() && index > 0 : "Index should be greater"
+                + " than 0 and smaller than list size.";
         return this.tasks.get(index);
     }
 

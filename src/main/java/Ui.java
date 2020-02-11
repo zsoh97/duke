@@ -56,6 +56,7 @@ public class Ui {
         String[] split;
         String[] dateTime;
         String description;
+
         // Check if user is done with Duke
         while (!input.equals("bye")) {
             try {
@@ -77,6 +78,7 @@ public class Ui {
                                 .append(Duke.tasks.getTask(i - 1)).append("\n");
                     }
 
+                    assert !sb.toString().isEmpty(): "StringBuilder should not be empty.";
                     // Print out list of tasks to user.
                     this.print(sb.toString());
 
@@ -90,6 +92,7 @@ public class Ui {
 
                     // Mark retrieved Task object as done.
                     task.done();
+                    assert task.getIsDone(): "Task should be marked as done.";
 
                     // Output success message
                     this.print("\n  " + "Well Done! The task has been marked as done."
@@ -138,6 +141,7 @@ public class Ui {
 
                     // Parse date details into LocalDate format.
                     dateTime = split[1].split(" ");
+                    assert dateTime.length == 2: "Details of time are insufficient.";
                     String taskBy = Parser.parseDate(dateTime[0]);
 
                     // Create new Task object of task type deadline.
@@ -170,6 +174,7 @@ public class Ui {
 
                     // Parse date details into LocalDate format.
                     dateTime = split[1].split(" ");
+                    assert dateTime.length == 2:"Details of time are insufficient";
                     String taskAt = Parser.parseDate(dateTime[0]);
 
                     // Create new Task object of event task type.
@@ -199,6 +204,7 @@ public class Ui {
 
                     // Parse given int in description to int type.
                     int delete = Integer.parseInt(description.trim());
+                    assert delete > 0:"Delete cannot be a negative number.";
 
                     // Check if given int is greater than number of tasks in list.
                     if (delete > Duke.tasks.getSize()) {
@@ -244,6 +250,7 @@ public class Ui {
                         res.append("  ").append(i).append(". ")
                                 .append(results.get(i - 1)).append("\n");
                     }
+                    assert !(res.length() == 0) : "StringBuilder should not be empty string.";
 
                     // Output results to user.
                     this.print(res.toString());
@@ -305,6 +312,7 @@ public class Ui {
 
                 // Mark retrieved Task object as done.
                 task.done();
+                assert task.getIsDone(): "Task should be marked as done.";
 
                 // Update save file.
                 Duke.storage.overwrite((ArrayList<Task>) Duke.tasks.getList());
@@ -345,6 +353,7 @@ public class Ui {
 
                 // Parse date details into LocalDate format.
                 dateTime = split[1].split(" ");
+                assert dateTime.length == 2 : "Details of time are insufficient.";
                 String taskBy = Parser.parseDate(dateTime[0]);
 
                 // Create new Task object of task type deadline.
@@ -372,6 +381,7 @@ public class Ui {
 
                 // Parse date details into LocalDate format.
                 dateTime = split[1].split(" ");
+                assert dateTime.length == 2 : "Details of time are insufficient.";
                 String taskAt = Parser.parseDate(dateTime[0]);
 
                 // Create new Task object of event task type.
@@ -398,6 +408,7 @@ public class Ui {
 
                 // Parse given int in description to int type.
                 int toDelete = Integer.parseInt(split[1].trim());
+                assert toDelete > 0 : "Delete index has to be greater than 0.";
 
                 // Check if given int is greater than number of tasks in list.
                 if (toDelete > Duke.tasks.getSize()) {
@@ -439,6 +450,7 @@ public class Ui {
                     res.append("  ").append(i).append(". ")
                             .append(results.get(i - 1)).append("\n");
                 }
+                assert res.length() > 0 : "StringBuilder should not be empty.";
 
                 // Output results to user.
                 return this.format(res.toString());
