@@ -1,3 +1,4 @@
+package tasks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,23 +16,15 @@ public class TaskList {
     /**
      * Constructor for Tasklist object.
      */
-    protected TaskList() {
+    public TaskList() {
         this.tasks = new ArrayList<>();
-    }
-
-    /**
-     * Returns List of tasks in duke.
-     * @return List of Task objects.
-     */
-    protected List<Task> getList() {
-        return this.tasks;
     }
 
     /**
      * Constructs new TaskList object with input List of Task objects.
      * @param tasks List of Task objects used to populate TaskList's list parameter.
      */
-    protected TaskList(List<Task> tasks) {
+    public TaskList(List<Task> tasks) {
         this.tasks = tasks;
     }
 
@@ -39,7 +32,7 @@ public class TaskList {
      * Deletes Task object at index from list.
      * @param index Index of Task object to be deleted.
      */
-    protected void deleteTask(int index) {
+    public void deleteTask(int index) {
         assert index <= tasks.size() && index > 0 : "Index of "
                 + "task should be greater than 0";
         this.tasks.remove(index);
@@ -49,9 +42,13 @@ public class TaskList {
      * Adds Task object to list.
      * @param task Task object to be added.
      */
-    protected void addTask(Task task) {
-        assert task != null: "Task should not be null.";
+    public void addTask(Task task) {
+        assert task != null : "Task should not be null.";
         this.tasks.add(task);
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
     }
 
     /**
@@ -59,17 +56,21 @@ public class TaskList {
      * @param index Index of desired Task object.
      * @return Task object at index.
      */
-    protected Task getTask(int index) {
+    public Task getTask(int index) {
         assert index <= tasks.size() && index > 0 : "Index should be greater"
                 + " than 0 and smaller than list size.";
         return this.tasks.get(index);
+    }
+
+    public void markAsDone(int index) {
+        tasks.get(index).markAsDone();
     }
 
     /**
      * Checks size of list.
      * @return Returns number of Task objects in the list.
      */
-    protected int getSize() {
+    public int getSize() {
         return this.tasks.size();
     }
 
@@ -77,7 +78,35 @@ public class TaskList {
      * Checks if the list contains no elements.
      * @return True if the list contains no elements.
      */
-    protected boolean isEmpty() {
+    public boolean isEmpty() {
         return this.tasks.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nThe items in your list are:\n");
+        for (int i = 1; i <= tasks.size(); i++) {
+            sb.append("  ").append(i).append(". ")
+                    .append(tasks.get(i - 1)).append("\n");
+        }
+        assert sb.length() > 0 : "StringBuilder should not be empty.";
+        return sb.toString();
+    }
+
+    /**
+     * Constructs a new list to store search results.
+     * @param searchKey Identifier that Task details needs to have.
+     * @return Task objects that contain identifier.
+     */
+    public List<Task> find(String searchKey) {
+        // Create new List<Task> to hold search results.
+        List<Task> results = new ArrayList<>();
+        for (Task t: tasks) {
+            if (t.getDescription().contains(searchKey)) {
+                results.add(t);
+            }
+        }
+        return results;
     }
 }
