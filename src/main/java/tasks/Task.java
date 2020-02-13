@@ -36,6 +36,10 @@ public class Task {
         return this.isDone;
     }
 
+    public void undoDone() {
+        this.isDone = false;
+    }
+
 
     /**
      * Gets description of Task object.

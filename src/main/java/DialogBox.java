@@ -29,6 +29,11 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructor for DialogBox.
+     * @param text Text to be displayed in DialogBox.
+     * @param img Image to be displayed in DialogBox.
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));

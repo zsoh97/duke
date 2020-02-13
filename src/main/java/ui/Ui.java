@@ -15,6 +15,7 @@ public class Ui {
     private static final String BORDER = "**********************************************************************";
     private static final String TASK_ADD_STRING = "Noted. The following task has been added:\n   ";
     private static final String BYE_MESSAGE = "\n Goodbye. I hope I was useful. See you again.\n";
+    private String lastMessage;
 
     /**
      * Constructor for Ui object.
@@ -57,8 +58,10 @@ public class Ui {
      */
     public String showTaskDoneMessage(Task task) {
         assert task.isDone() : "Task should be marked as done.";
-        return this.formatResponse("\n  " + "Well Done! The task has been marked as done."
-                + "\n  " + task + "\n");
+        String response = "\n  " + "Well Done! The task has been marked as done."
+                + "\n  " + task + "\n";
+        lastMessage = response;
+        return this.formatResponse(response);
     }
 
     /**
@@ -77,9 +80,11 @@ public class Ui {
      * @return Duke's response when a delete command has been inputted by the user.
      */
     public String showDeleteMessage(Task removedTask, int deleteIndex, int numOfTask) {
-        return this.formatResponse("\n  Noted. Task " + deleteIndex + " has been removed:\n  "
+        String response = "\n  Noted. Task " + deleteIndex + " has been removed:\n  "
                 + removedTask + "\n  There are currently " + numOfTask
-                + " tasks in the list.\n");
+                + " tasks in the list.\n";
+        lastMessage = response;
+        return this.formatResponse(response);
     }
 
     /**
@@ -114,8 +119,29 @@ public class Ui {
         System.out.println();
     }
 
+    /**
+     * Retrieves Duke's response when a new Task has been added by the user.
+     * @param numOfTask Number of tasks currently in the list.
+     * @param task New Task being added.
+     * @return Duke's response.
+     */
     public String showTaskAddMessage(int numOfTask, String task) {
-        return this.formatResponse("\n  " + TASK_ADD_STRING + task + "\n  There are currently "
-                + numOfTask + " task(s) in the list.\n");
+        String response = "\n  " + TASK_ADD_STRING + task + "\n  There are currently "
+                + numOfTask + " task(s) in the list.\n";
+        this.lastMessage = response;
+        return this.formatResponse(response);
+    }
+
+    /**
+     * Retrieves Duke's response when the undo command is invoked.
+     * @return Duke's response.
+     */
+    public String showUndoMessage() {
+        return this.formatResponse("\n Your previous command:\n"
+                + this.lastMessage + "\n has been undone.\n");
+    }
+
+    public String getLastMessage() {
+        return lastMessage;
     }
 }

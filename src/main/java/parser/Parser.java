@@ -7,6 +7,7 @@ import commands.ListCommand;
 import commands.ByeCommand;
 import commands.FindCommand;
 import commands.DeleteCommand;
+import commands.UndoCommand;
 import exceptions.DukeException;
 import exceptions.InvalidCommandException;
 import tasks.Deadline;
@@ -32,6 +33,13 @@ public class Parser {
 
     }
 
+    /**
+     * Parses user input for Duke and calls the respective methods for the different commands.
+     * @param input User input String.
+     * @return Duke's response to user input.
+     * @throws DukeException Error messages by Duke should user input have insufficient details.
+     * @throws InvalidCommandException Error message by Duke when user has input a invalid command.
+     */
     public static Command parse(String input) throws DukeException, InvalidCommandException {
         String[] splitInput = input.split(" ");
         switch (splitInput[0]) {
@@ -52,9 +60,10 @@ public class Parser {
             return new AddCommand(parseDeadline(input));
         case "event" :
             return new AddCommand(parseEvent(input));
+        case "undo":
+            return new UndoCommand();
         default :
-            throw new InvalidCommandException("\nMy apologies, I do not recognise the command. "
-                    + ":(\n");
+            throw new InvalidCommandException("\nMy apologies, I do not recognise the command. :(\n");
         }
     }
 

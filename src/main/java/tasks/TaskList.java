@@ -12,6 +12,7 @@ public class TaskList {
      * Class TaskList contains List of Task objects to be maintained.
      */
     private List<Task> tasks;
+    private Task mostRecentTask;
 
     /**
      * Constructor for Tasklist object.
@@ -35,6 +36,7 @@ public class TaskList {
     public void deleteTask(int index) {
         assert index <= tasks.size() && index > 0 : "Index of "
                 + "task should be greater than 0";
+        mostRecentTask = this.tasks.get(index);
         this.tasks.remove(index);
     }
 
@@ -45,6 +47,7 @@ public class TaskList {
     public void addTask(Task task) {
         assert task != null : "Task should not be null.";
         this.tasks.add(task);
+        mostRecentTask = task;
     }
 
     public List<Task> getTasks() {
@@ -62,8 +65,14 @@ public class TaskList {
         return this.tasks.get(index);
     }
 
+    /**
+     * Duke marks Task as done.
+     * @param index Index which task to be marked is located.
+     */
     public void markAsDone(int index) {
-        tasks.get(index).markAsDone();
+        Task task = tasks.get(index);
+        task.markAsDone();
+        mostRecentTask = task;
     }
 
     /**
@@ -108,5 +117,31 @@ public class TaskList {
             }
         }
         return results;
+    }
+
+    /**
+     * Removes most recently added Task from list.
+     */
+    public void undoAdd() {
+        tasks.remove(this.getSize() - 1);
+    }
+
+    /**
+     * Undoes completion mark on Task.
+     */
+    public void undoDone() {
+        mostRecentTask.undoDone();
+    }
+
+    /**
+     * Undoes deletion of task.
+     * @param removedIndex Previous index of task before it was removed.
+     */
+    public void undoDelete(int removedIndex) {
+        tasks.add(removedIndex - 1, mostRecentTask);
+    }
+
+    public Task getMostRecentTask() {
+        return mostRecentTask;
     }
 }
