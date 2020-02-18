@@ -13,6 +13,11 @@ import java.util.List;
  */
 public class Ui {
     private static final String BORDER = "**********************************************************************";
+    private static final String LOGO = " ____        _\n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String TASK_ADD_STRING = "Noted. The following task has been added:\n   ";
     private static final String BYE_MESSAGE = "\n Goodbye. I hope I was useful. See you again.\n";
     private String lastMessage;
@@ -26,9 +31,9 @@ public class Ui {
     /**
      * Ui object displays welcome message when Duke is launched.
      */
-    public void showWelcome() {
-        String greeting = "Hi! My name is Alfred. I aim to please.";
-        System.out.println(BORDER + "\n  " + greeting + "\n" + BORDER);
+    public String showWelcome() {
+        String greeting = "Hi! My name is Alfred. Welcome to\n";
+        return BORDER + "\n  " + greeting +  LOGO + "\n" + BORDER;
     }
 
     /**

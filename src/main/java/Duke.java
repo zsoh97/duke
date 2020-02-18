@@ -25,17 +25,14 @@ public class Duke {
      * Constructs a Duke object.
      * @param filePath file path to save file in hard drive
      */
-    public Duke(String filePath) {
+    private Duke(String filePath) {
         assert !filePath.isEmpty() : "filepath should not be empty String.";
 
         this.ui = new Ui();
-        // Prints welcome message
-        this.ui.showWelcome();
         storage = new Storage(filePath);
 
         // Constructs new storage object
         storage = new Storage(filePath);
-
         // Load list of tasks from save file
         try {
             tasks = new TaskList(storage.load());
@@ -43,6 +40,10 @@ public class Duke {
             this.ui.showLoadingError();
             tasks = new TaskList();
         }
+    }
+
+    protected String getGreeting(){
+        return ui.showWelcome();
     }
 
     /**
