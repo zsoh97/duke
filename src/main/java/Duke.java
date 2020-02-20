@@ -42,7 +42,7 @@ public class Duke {
         }
     }
 
-    protected String getGreeting(){
+    protected String getGreeting() {
         return ui.showWelcome();
     }
 
