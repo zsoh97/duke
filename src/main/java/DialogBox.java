@@ -64,10 +64,22 @@ public class DialogBox extends HBox {
                 new CornerRadii(3), new Insets(3))));
     }
 
+    /**
+     * Returns new DialogBox with the text and image to be displayed.
+     * @param text Text to be displayed in DialogBox.
+     * @param img Image to be displayed in DialogBox.
+     * @return DialogBox containing the user's image and the user's input.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns new DialogBox with the text and image to be displayed.
+     * @param text Text to be displayed in DialogBox.
+     * @param img Image to be displayed in DialogBox.
+     * @return DialogBox containing Duke's image and the Duke's response.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
