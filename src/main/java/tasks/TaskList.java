@@ -94,7 +94,6 @@ public class TaskList {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\nThe items in your list are:\n");
         for (int i = 1; i <= tasks.size(); i++) {
             sb.append("  ").append(i).append(". ")
                     .append(tasks.get(i - 1)).append("\n");

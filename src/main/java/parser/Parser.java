@@ -53,7 +53,7 @@ public class Parser {
         case "delete" :
             return new DeleteCommand(Integer.parseInt(splitInput[1]));
         case "find" :
-            return new FindCommand(input.substring(5));
+            return new FindCommand(input.substring(4));
         case "todo" :
             return new AddCommand(parseTodo(input.substring(5)));
         case "deadline" :
@@ -105,8 +105,17 @@ public class Parser {
         assert dateTime.length == 2 : "Details of time are insufficient";
         String taskBy = Parser.parseDate(dateTime[0]);
 
+        parseTime(dateTime[1].trim());
+
         // Add deadline to list.
         return new Deadline(splitDetails[0].substring(9), taskBy + dateTime[1]);
+    }
+
+    private static void parseTime(String timeString) throws DukeException {
+        int time = Integer.parseInt(timeString);
+        if(time > 2359 || time <0 || time % 100 > 59) {
+            throw new DukeException("\n My apologies, please enter a valid time between 0000-2359.\n");
+        }
     }
 
     /**
@@ -119,7 +128,7 @@ public class Parser {
 
         // Check if given description has sufficient details.
         if (splitDetails.length < 2) {
-            throw new DukeException("\nMy apologies, "
+            throw new DukeException("\n My apologies, "
                     + "event description has insufficient details. :(\n");
         }
 
@@ -127,6 +136,7 @@ public class Parser {
         String[] dateTime = splitDetails[1].split(" ");
         assert dateTime.length == 2 : "Details of time are insufficient";
         String eventAt = Parser.parseDate(dateTime[0]);
+        parseTime(dateTime[1].trim());
 
         // Add deadline to list.
         return new Event(splitDetails[0].substring(6), eventAt + dateTime[1]);
@@ -137,25 +147,24 @@ public class Parser {
      * @param readFile Line read from file.
      */
     public Task parseLine(String readFile) throws DukeException {
-        String[] taskDetails = readFile.split(" / ");
-        switch (taskDetails[0]) {
-        case "T":
-            Todo todo = new Todo(readFile.substring(8));
-            if (readFile.charAt(4) == 1) {
+        switch (readFile.charAt(0)) {
+        case 'T':
+            Todo todo = new Todo(readFile.substring(7));
+            if (readFile.charAt(4) == '1') {
                 todo.markAsDone();
             }
             return todo;
-        case "D":
-            String[] splitDetails = readFile.substring(8).split("/");
+        case 'D':
+            String[] splitDetails = readFile.substring(7).split("/");
             Deadline deadline = new Deadline(splitDetails[0].trim(), splitDetails[1].trim());
-            if (readFile.charAt(4) == 1) {
+            if (readFile.charAt(4) == '1') {
                 deadline.markAsDone();
             }
             return deadline;
-        case "Event":
-            String[] splitEventDetails = readFile.substring(8).split("/");
+        case 'E':
+            String[] splitEventDetails = readFile.substring(7).split("/");
             Event event = new Event(splitEventDetails[0].trim(), splitEventDetails[1].trim());
-            if (readFile.charAt(4) == 1) {
+            if (readFile.charAt(4) == '1') {
                 event.markAsDone();
             }
             return event;

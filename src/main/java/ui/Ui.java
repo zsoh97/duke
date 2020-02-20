@@ -14,10 +14,10 @@ import java.util.List;
 public class Ui {
     private static final String BORDER = "**********************************************************************";
     private static final String LOGO = " ____        _\n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
+            + " |  _ \\ _   _| | _____ \n"
+            + " | | | | | | | |/ / _ \\\n"
+            + " | |_| | |_| |   <  __/\n"
+            + " |____/ \\__,_|_|\\_\\___|\n";
     private static final String TASK_ADD_STRING = "Noted. The following task has been added:\n   ";
     private static final String BYE_MESSAGE = "\n Goodbye. I hope I was useful. See you again.\n";
     private String lastMessage;
@@ -33,7 +33,7 @@ public class Ui {
      */
     public String showWelcome() {
         String greeting = "Hi! My name is Alfred. Welcome to\n";
-        return BORDER + "\n  " + greeting +  LOGO + "\n" + BORDER;
+        return BORDER + "\n  " + greeting +  LOGO + "\n How may I help you?\n" + BORDER;
     }
 
     /**
@@ -48,11 +48,12 @@ public class Ui {
      * Fetches Duke's response to 'list' command.
      * @return Duke's response.
      */
-    public String getListResponse(TaskList tasks) {
+    public String getListResponse(TaskList tasks, int numOfTasks) {
         if (tasks.isEmpty()) {
             return this.formatResponse("\n  There are currently no items in your list. \n");
         } else {
-            return this.formatResponse(tasks.toString());
+            return this.formatResponse("\n There are currently " + numOfTasks
+                    + " items in your list:\n" + tasks.toString());
         }
     }
 
@@ -63,8 +64,8 @@ public class Ui {
      */
     public String showTaskDoneMessage(Task task) {
         assert task.isDone() : "Task should be marked as done.";
-        String response = "\n  " + "Well Done! The task has been marked as done."
-                + "\n  " + task + "\n";
+        String response = "\n  " + "Well Done! The task:"
+                + "\n  " + task + "\n  has been marked as done.\n";
         lastMessage = response;
         return this.formatResponse(response);
     }
@@ -87,7 +88,7 @@ public class Ui {
     public String showDeleteMessage(Task removedTask, int deleteIndex, int numOfTask) {
         String response = "\n  Noted. Task " + deleteIndex + " has been removed:\n  "
                 + removedTask + "\n  There are currently " + numOfTask
-                + " tasks in the list.\n";
+                + " task(s) in the list.\n";
         lastMessage = response;
         return this.formatResponse(response);
     }
@@ -112,7 +113,7 @@ public class Ui {
                     + "there are no tasks matching '" + key + "' :(\n"));
         }
         String resultTasks = new TaskList(results).toString();
-        return this.formatResponse(resultTasks);
+        return this.formatResponse("\n The matching items in your list are:\n" + resultTasks);
     }
 
 

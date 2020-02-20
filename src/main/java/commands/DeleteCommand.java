@@ -17,8 +17,6 @@ public class DeleteCommand extends Command {
         Task task = taskList.getTask(deleteIndex - 1);
         taskList.deleteTask(deleteIndex - 1);
         storage.overwrite(taskList.getTasks());
-        String response = ui.showDeleteMessage(task, deleteIndex, taskList.getSize());
-        System.out.println(response);
-        return response;
+        return ui.showDeleteMessage(task, deleteIndex, taskList.getSize());
     }
 }

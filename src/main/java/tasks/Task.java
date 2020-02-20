@@ -68,7 +68,7 @@ public class Task {
     public String writeToFile() {
         assert !this.taskDetails.isEmpty() : "Task details should not be empty.";
         // Check if Task has been marked as done.
-        if (this.isDone) {
+        if (isDone) {
             return " 1 / " + this.taskDetails;
         }
         return " 0 / " + this.taskDetails;

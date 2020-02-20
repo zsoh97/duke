@@ -10,11 +10,11 @@ public class Event extends Task {
 
     @Override
     public String writeToFile() {
-        return "D /" + super.writeToFile() + " / " + eventAt;
+        return "E /" + super.writeToFile() + " / " + eventAt;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " " + eventAt;
+        return "[E]" + super.toString() + " (at: " + eventAt + ")";
     }
 }
