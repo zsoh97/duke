@@ -1,7 +1,7 @@
-##Batman's Alfred
+## Batman's Alfred
 # User Guide
 
-##Features 
+## Features 
    
 ### Adding a task
 
