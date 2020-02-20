@@ -3,12 +3,13 @@ package storage;
 import exceptions.DukeException;
 import parser.Parser;
 import tasks.Task;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +78,7 @@ public class Storage {
      * @throws DukeException Thrown when any line in the safe file does not fit the required Task object requirements.
      */
     public List<Task> load() throws DukeException {
-        ArrayList<Task> tasks = new ArrayList<>();
+        List<Task> loadedTasks = new ArrayList<>();
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(this.filePath));
             String readLine;
@@ -86,11 +87,13 @@ public class Storage {
             //Check if save file has reached EOF
             while ((readLine = bufferedReader.readLine()) != null) {
                 Task task = parser.parseLine(readLine);
-                tasks.add(task);
+                loadedTasks.add(task);
             }
+            bufferedReader.close();
         } catch (IOException ie) {
-            ie.printStackTrace();
+            new File("./data").mkdir();
+            new File("./data/duke.txt");
         }
-        return tasks;
+        return loadedTasks;
     }
 }
