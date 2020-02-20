@@ -42,7 +42,11 @@ public class Duke {
         }
     }
 
-    protected String getGreeting(){
+    /**
+     * Retrieves Duke's greeting to be displayed upon startup.
+     * @return Duke's welcome message.
+     */
+    protected String getGreeting() {
         return ui.showWelcome();
     }
 
