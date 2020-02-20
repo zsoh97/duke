@@ -41,9 +41,9 @@ Expected outcome:
 <br> 
 `There are currently 1 item(s) in the list`
  
- ### `deadline(task details) /by YYYY-MM-DD HHmm` - Adds a new deadline.
+### `deadline(task details) /by YYYY-MM-DD HHmm` - Adds a new deadline.
  
- Adds a new type of task, deadline, to the task list.
+Adds a new type of task, deadline, to the task list.
  
 Example of usage: 
 
@@ -53,13 +53,13 @@ Expected outcome:
 
 `Noted. The following task has been added:`
 <br>
-` [D][X] CS2105 Assignment 1 (by: 1 Mar 2020 2359)`
+`[D][X] CS2105 Assignment 1 (by: 1 Mar 2020 2359)`
 <br>
- `There are currently 2 item(s) in the list` 
+`There are currently 2 item(s) in the list` 
 
- ### `event(task details) /at YYYY-MM-DD HHmm` - Adds a new event.
+### `event(task details) /at YYYY-MM-DD HHmm` - Adds a new event.
  
- Adds a new type of task, event, to the task list.
+Adds a new type of task, event, to the task list.
  
 Example of usage: 
 
@@ -69,9 +69,9 @@ Expected outcome:
 
 `Noted. The following task has been added:`
 <br>
- `[E][X] CS2101 Presentation (at: 20 Feb 2020 1200)`
- <br>
- `There are currently 3 item(s) in the list`
+`[E][X] CS2101 Presentation (at: 20 Feb 2020 1200)`
+<br>
+`There are currently 3 item(s) in the list`
 
 ### `list` - Displays all tasks.
 
@@ -91,7 +91,7 @@ Expected outcome:
 <br>
 `[E][X] CS2101 Presentation (at: 20 Feb 2020 1200)`
  
- ### `done` - Marks a task as complete
+### `done` - Marks a task as complete
  
  Marks the task at the given index as done.
  
@@ -107,7 +107,7 @@ Expected outcome:
  <br> 
  `has been marked as done.`
  
- ### `find (keyword)` - Searches for tasks with given key
+### `find (keyword)` - Searches for tasks with given key
  
  Returns list of tasks which contains given key in their task description.
  
@@ -119,7 +119,7 @@ Expected outcome:
  `The matching items in your list are:` 
  `[E][X] CS2101 Presentation (at: 20 Feb 2020 1200)`
  
- ### `delete` - Deletes a task
+### `delete` - Deletes a task
  
  Removes the task at the given index from the task list.
  
@@ -135,7 +135,7 @@ Expected outcome:
   <br>
    `There are currently 2 task(s) in the list.`
   
-  ### `undo` - Undoes a previous command
+### `undo` - Undoes a previous command
   
   Undoes the previous command by the user that changed the task list or its items.
   
@@ -154,7 +154,7 @@ Expected outcome:
    <br>
    `has been undone.`
   
-  ### `bye` - Exits the program
+### `bye` - Exits the program
   
   Exits the program.
   
