@@ -18,11 +18,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+//@@author JeffreyLum-reused
+//reused from https://github.com/zsoh97/duke/blob/master/tutorials/javaFxTutorialPart4.md with minor modifications.
 /**
  * An example of a custom control using FXML.
  * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
  * containing text from the speaker.
  */
+
 public class DialogBox extends HBox {
     @FXML
     private Label dialog;

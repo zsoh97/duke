@@ -1,15 +1,13 @@
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-
+//@@author Jeffrey Lum-reused
+//reused from https://github.com/zsoh97/duke/blob/master/tutorials/javaFxTutorialPart4.md with minor modifications.
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
